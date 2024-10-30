@@ -39,7 +39,7 @@ class WeatherService {
  }
   // TODO: Create buildGeocodeQuery method
  private buildGeocodeQuery(city: string): string {
-  return `http://api.openweathermap.org/geo/1.0/direct?q=${this.cityName}&appid=${this.apiKey}`;
+  return `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${this.apiKey}`;
  }
   // TODO: Create buildWeatherQuery method
  private buildWeatherQuery(coordinates: Coordinates): string {
@@ -66,18 +66,20 @@ class WeatherService {
   return new Weather(temperature, windSpeed, humidity);
  }
   // TODO: Complete buildForecastArray method
- private buildForecastArray(currentWeather: Weather, weatherData: any[]) Weather[] {
+ private buildForecastArray(currentWeather: Weather, weatherData: any[]): Weather[] {
       return weatherData.map(data => {
       return new Weather(
         data.main.temp,
-        data.weather[0].description,
         data.wind.speed,
-        data.main.humidity
+        data.main.humidity,
       );
     });
  }
   // TODO: Complete getWeatherForCity method
- async getWeatherForCity(city: string) {}
+ async getWeatherForCity(city: string) {
+  await 
+
+ }
 }
 
 export default new WeatherService();
