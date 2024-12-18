@@ -48,7 +48,7 @@ const fetchWeather = async (cityName: string) => {
   console.log('weatherData: ', weatherData);
 
   renderCurrentWeather(weatherData[0]);
-  renderForecast(weatherData.slice(1));
+  renderForecast(weatherData[1]);
 };
 
 const fetchSearchHistory = async () => {
@@ -127,7 +127,7 @@ const renderForecastCard = (forecast: any) => {
   cardTitle.textContent = date;
   weatherIcon.setAttribute(
     'src',
-    `https://openweathermap.org/img/w/${icon}.png`
+    `https://openweathermap.org/img/wn/${icon}.png`
   );
   weatherIcon.setAttribute('alt', iconDescription);
   tempEl.textContent = `Temp: ${tempF} °F`;
@@ -235,7 +235,7 @@ const createHistoryDiv = () => {
 };
 
 const buildHistoryListItem = (city: any) => {
-  const newBtn = createHistoryButton(city.name);
+  const newBtn = createHistoryButton(city.cityName);
   const deleteBtn = createDeleteButton();
   deleteBtn.dataset.city = JSON.stringify(city);
   const historyDiv = createHistoryDiv();
@@ -272,7 +272,7 @@ const handleSearchHistoryClick = (event: any) => {
 
 const handleDeleteHistoryClick = (event: any) => {
   event.stopPropagation();
-  const cityID = JSON.parse(event.target.getAttribute('data-city')).id;
+  const cityID = JSON.parse(event.target.getAttribute('data-city')).cityId;
   deleteCityFromHistory(cityID).then(getAndRenderHistory);
 };
 
